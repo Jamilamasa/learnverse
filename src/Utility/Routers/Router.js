@@ -10,6 +10,7 @@ import { AppProvider } from "../../Context/AppContext";
 import Course from "../../Pages/Course";
 import EachCourseTopic from "../../Pages/EachCourseTopic";
 import Profile from "../../Pages/Profile";
+import NavigateAwayFromAuth from "../NavigateAwayFromAuth";
 
 // Export Route paths
 export const ROOT = "/";
@@ -19,9 +20,7 @@ export const DASHBOARD = "/dashboard";
 export const WELCOME = "/welcome";
 export const COURSE = "/course/:id";
 export const EACHCOURSE = "/course/:id/:id";
-export const PROFILE = "/profile"
-
-
+export const PROFILE = "/profile";
 
 // Configure routes below
 const router = createBrowserRouter([
@@ -37,25 +36,38 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Dashboard />,
-      }, {
+      },
+      {
         path: PROFILE,
-        element: <Profile />
-      }
+        element: <Profile />,
+      },
     ],
   },
   {
     path: SIGNIN,
-    element: <Signin />,
+    element: (
+      <NavigateAwayFromAuth>
+        <Signin />
+      </NavigateAwayFromAuth>
+    ),
     errorElement: <h1>An Error Has Occured</h1>,
   },
   {
     path: SIGNUP,
-    element: <Signup />,
+    element: (
+      <NavigateAwayFromAuth>
+        <Signup />
+      </NavigateAwayFromAuth>
+    ),
     errorElement: <h1>An Error Has Occured</h1>,
   },
   {
     path: WELCOME,
-    element: <Welcome />,
+    element: (
+      <NavigateAwayFromAuth>
+        <Welcome />
+      </NavigateAwayFromAuth>
+    ),
     errorElement: <h1>An Error Has Occured</h1>,
   },
   {
@@ -71,11 +83,12 @@ const router = createBrowserRouter([
         index: true,
         element: <Course />,
       },
-    ]},
+    ],
+  },
 
   {
     path: EACHCOURSE,
-      element: (
+    element: (
       <ProtectedComponent>
         <Root />
       </ProtectedComponent>
@@ -86,14 +99,15 @@ const router = createBrowserRouter([
         index: true,
         element: <EachCourseTopic />,
       },
-    ]},
+    ],
+  },
 ]);
 const Router = () => {
-  return(
+  return (
     <AppProvider>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </AppProvider>
-   )
+  );
 };
 
 export default Router;
