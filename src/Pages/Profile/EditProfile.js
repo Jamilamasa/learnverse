@@ -1,9 +1,148 @@
-import React from 'react'
+import React from "react";
+import Button from "../../components/UI/Button"
+import logo from "../../assets/logo.png";
+import vector from "../../assets/vector.png";
 
 const EditProfile = () => {
   return (
-    <div>EditProfile</div>
-  )
-}
+    <div className="flex flex-col items-center justify-center  max-w-md mx-auto mb-28">
+      {/* Header */}
+      <h1 className="font-medium text-3xl mb-5">Your Profile</h1>
+      {/* Profile Photo */}
+      <div className="relative border rounded-full p-5 mb-3">
+        <button>
+          <span className=" bg-[#F2E5E5] rounded-full w-7 h-7  absolute bottom-[-7px] right-0">
+            <img
+              src={vector}
+              className="w-3 h-3 absolute top-[9px] left-[7px]"
+              alt="Vector"
+            />
+          </span>
+          <img src={logo} className="w-11 h-11" alt="Profile" />
+        </button>
+      </div>
+      {/* User Email & Name */}
+      <div className="text-center mb-8 ">
+        <h1 className="font-bold text-xl">Jamil Amasa</h1>
+        <p className="font-normal text-base text-[#7c7c7c]">
+          Jamilamasa@gmail.com
+        </p>
+      </div>
 
-export default EditProfile
+      {/* Form */}
+      <form className="w-full p-5">
+        {/* User name */}
+        <div class="relative mb-7">
+          <input
+            type="text"
+            id="username"
+            class=" w-full border-2 py-4 px-5 rounded-full block pb-2.5 pt-4 text-sm text-gray-900 bg-transparent rborder-1 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" "
+          />
+          <label
+            for="username"
+            class="bg-white text-[#343434B2] absolute text-lg duration-300 transform -translate-y-5 scale-75 top-3 z-10 origin-[0] mx-3 peer-focus:mx-3  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-0 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+          >
+            User Name
+          </label>
+        </div>
+        {/* First Name */}
+        <div class="relative mb-7">
+          <input
+            type="text"
+            id="first-name"
+            class=" w-full border-2 py-4 px-5 rounded-full block pb-2.5 pt-4 text-sm text-gray-900 bg-transparent rborder-1 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" "
+          />
+          <label
+            for="first-name"
+            class="bg-white text-[#343434B2] absolute text-lg duration-300 transform -translate-y-5 scale-75 top-3 z-10 origin-[0] mx-3 peer-focus:mx-3  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-0 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+          >
+            First Name
+          </label>
+        </div>
+        {/* Last name */}
+        <div class="relative mb-7">
+          <input
+            type="text"
+            id="last-name"
+            class=" w-full border-2 py-4 px-5 rounded-full block pb-2.5 pt-4 text-sm text-gray-900 bg-transparent rborder-1 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" "
+          />
+          <label
+            for="last-name"
+            class="bg-white text-[#343434B2] absolute text-lg duration-300 transform -translate-y-5 scale-75 top-3 z-10 origin-[0] mx-3 peer-focus:mx-3  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-0 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+          >
+            Last Name
+          </label>
+        </div>
+        {/* Gender */}
+        <div class="relative mb-7">
+          {/* <input
+            type="text"
+            id="Gender"
+            class=" w-full border-2 py-4 px-5 rounded-full block pb-2.5 pt-4 text-sm text-gray-900 bg-transparent rborder-1 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" "
+          /> */}
+          <label
+            for="gender"
+            class="bg-white text-[#343434B2] absolute text-lg duration-300 transform -translate-y-5 scale-75 top-3 z-10 origin-[0] mx-3 peer-focus:mx-3  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-0 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+          >
+            Gender
+          </label>
+          <select id="gender" className="w-full border-2 py-4 px-5 rounded-full block pb-2.5 pt-4 text-sm text-gray-900 bg-transparent rborder-1 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" defaultValue=""><option value="">--Select A Gender--</option><option value="male">Male</option><option value="female">Female</option></select>
+        </div>
+        {/* User Type */}
+        <div class="relative mb-7">
+          <input
+            type="text"
+            id="user-type"
+            class=" w-full border-2 py-4 px-5 rounded-full block pb-2.5 pt-4 text-sm text-gray-900 bg-transparent rborder-1 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" "
+            disabled
+            value="Student"
+          />
+          <label
+            for="user-type"
+            class="bg-white text-[#343434B2] absolute text-lg duration-300 transform -translate-y-5 scale-75 top-3 z-10 origin-[0] mx-3 peer-focus:mx-3  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-0 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+          >
+            User Type
+          </label>
+        </div>
+        {/* User email */}
+        <div class="relative mb-7">
+          <input
+            type="email"
+            id="email"
+            class=" w-full border-2 py-4 px-5 rounded-full block pb-2.5 pt-4 text-sm text-gray-900 bg-transparent rborder-1 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" "
+          />
+          <label
+            for="email"
+            class="bg-white text-[#343434B2] absolute text-lg duration-300 transform -translate-y-5 scale-75 top-3 z-10 origin-[0] mx-3 peer-focus:mx-3  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-0 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+          >
+            Email
+          </label>
+        </div>
+        {/* User name */}
+        <div class="relative mb-7">
+          <input
+            type="date"
+            id="dob"
+            class=" w-full border-2 py-4 px-5 rounded-full block pb-2.5 pt-4 text-sm text-gray-900 bg-transparent rborder-1 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" "
+          />
+          <label
+            for="dob"
+            class="bg-white text-[#343434B2] absolute text-lg duration-300 transform -translate-y-5 scale-75 top-3 z-10 origin-[0] mx-3 peer-focus:mx-3  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-0 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+          >
+            Date Of Birth
+          </label>
+        </div>
+        <Button type="Save"/>
+      </form>
+    </div>
+  );
+};
+
+export default EditProfile;

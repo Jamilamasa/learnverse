@@ -11,6 +11,8 @@ import Course from "../../Pages/Course";
 import EachCourseTopic from "../../Pages/EachCourseTopic";
 import Profile from "../../Pages/Profile/Profile";
 import NavigateAwayFromAuth from "../NavigateAwayFromAuth";
+import EditProfile from "../../Pages/Profile/EditProfile";
+import ProfilePage from "../../Pages/Profile/ProfilePage";
 
 // Export Route paths
 export const ROOT = "/";
@@ -21,6 +23,7 @@ export const WELCOME = "/welcome";
 export const COURSE = "/course/:id";
 export const EACHCOURSE = "/course/:id/:id";
 export const PROFILE = "/profile";
+export const EDITPROFILE = "/profile/edit";
 
 // Configure routes below
 const router = createBrowserRouter([
@@ -39,7 +42,11 @@ const router = createBrowserRouter([
       },
       {
         path: PROFILE,
-        element: <Profile />,
+        element: <ProfilePage />,
+        children: [
+          { index: true, element: <Profile /> },
+          { path: EDITPROFILE, element: <EditProfile /> },
+        ],
       },
     ],
   },

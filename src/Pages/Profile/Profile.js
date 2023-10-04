@@ -1,30 +1,19 @@
-import React from "react";
-import { RiArrowLeftLine } from "react-icons/ri";
-import { Link, useNavigate } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
 import logo from "../../assets/logo.png";
 import vector from "../../assets/vector.png";
 import CoursesCovered from "../../components/ProfilePage/CoursesCovered";
 import SubscriptionCard from "../../components/ProfilePage/SubscriptionCard";
+import { EDITPROFILE } from '../../Utility/Routers/Router';
 
 const Profile = () => {
-  const navigate = useNavigate();
   return (
-    <>
-      <button
-        onClick={(e) => {
-          e.preventDefault();
-          navigate(-1);
-        }}
-      >
-        <RiArrowLeftLine size={30} />
-      </button>
-
-      <div className="flex flex-col items-center justify-center  max-w-md m-auto">
+    <div className="flex flex-col items-center justify-center  max-w-md mx-auto mb-28">
         {/* Header */}
         <h1 className="font-medium text-3xl mb-5">Profile</h1>
         {/* Profile Photo */}
         <div className="relative border rounded-full p-5 mb-3">
-          <Link to="">
+          <Link to={EDITPROFILE}>
             <span className=" bg-[#F2E5E5] rounded-full w-7 h-7  absolute bottom-[-7px] right-0">
               <img
                 src={vector}
@@ -55,8 +44,7 @@ const Profile = () => {
           <CoursesCovered/>
         </div>
       </div>
-    </>
-  );
-};
+  )
+}
 
-export default Profile;
+export default Profile
