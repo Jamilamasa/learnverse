@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { RiEqualizerLine, RiSearch2Line } from "react-icons/ri";
 import logo from "../assets/logo.png";
 import Biology from "../assets/biology.png";
@@ -9,8 +9,7 @@ import Ict from "../assets/ict.png";
 import CourseImg from "../assets/course.png";
 import OngoingImg from "../assets/ongoing.png";
 import Man from "../assets/man.png";
-import Navbar from "../components/Navbar";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import { AppContext } from "../Context/AppContext";
 import { signOut } from "firebase/auth";
 import { auth } from "../Utility/FirebaseConfig";

@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import svg from "../../assets/E-payment and digital wallet securitylogin_svg.svg";
 import arrowmobile from "../../assets/Arrow - Leftmobile.svg";
 import { Link } from "react-router-dom";
-import { useLogin, useUser } from "../../Hooks/AuthHook";
+import { useLogin} from "../../Hooks/AuthHook";
 import Button from "../../components/UI/Button";
-import NavigateAwayFromAuth from "../../Utility/NavigateAwayFromAuth";
 
 const Signin = () => {
-  const [userInfo, loading] = useUser();
-  // Dont access this page when you sign in
- 
-
   const [signInData, setSignInData] = useState({ email: "", password: "" });
   const [login, isLoading] = useLogin();
 

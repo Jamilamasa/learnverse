@@ -9,7 +9,7 @@ import ProtectedComponent from "../ProtectedComponent";
 import { AppProvider } from "../../Context/AppContext";
 import Course from "../../Pages/Course";
 import EachCourseTopic from "../../Pages/EachCourseTopic";
-import Profile from "../../Pages/Profile";
+import Profile from "../../Pages/Profile/Profile";
 import NavigateAwayFromAuth from "../NavigateAwayFromAuth";
 
 // Export Route paths
