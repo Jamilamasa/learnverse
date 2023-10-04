@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import svg from "../../assets/E-payment and digital wallet securitylogin_svg.svg";
 import arrowmobile from "../../assets/Arrow - Leftmobile.svg";
 import { Link } from "react-router-dom";
-import { useLogin} from "../../Hooks/AuthHook";
+import { useLogin, useUser} from "../../Hooks/AuthHook";
 import Button from "../../components/UI/Button";
 
 const Signin = () => {
@@ -18,6 +18,7 @@ const Signin = () => {
     e.preventDefault();
     login(signInData);
   };
+ 
 
   return (
     <>

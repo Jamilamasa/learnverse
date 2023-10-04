@@ -5,7 +5,7 @@ import { auth, db } from "../Utility/FirebaseConfig";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import isUsernameExist from "../Utility/isUserNameExist";
 import { useNavigate } from "react-router-dom";
-import { ROOT, SIGNIN } from "../Utility/Routers/Router";
+import { ROOT, SIGNIN, WELCOME } from "../Utility/Routers/Router";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 // Get USER
@@ -108,7 +108,7 @@ export const useLogout = () => {
   const logout = async () => {
     if (await signOut()) {
       toast.success("Successfully logged out");
-      navigate(SIGNIN);
+      navigate(WELCOME);
     }
   };
   return [logout, loading];

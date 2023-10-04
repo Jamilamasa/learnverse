@@ -5,10 +5,10 @@ import { ROOT } from "./Routers/Router";
 
 const NavigateAwayFromAuth = ({ children }) => {
   const [userInfo, isLoading] = useUser();
-  if (userInfo && !isLoading) {
+
+  if (!userInfo) {
     return <>{children}</>;
-  }
-  return <Navigate to={ROOT} />;
+  } else return <Navigate to={ROOT} />;
 };
 
 export default NavigateAwayFromAuth;
