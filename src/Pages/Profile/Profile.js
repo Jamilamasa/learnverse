@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useOutletContext } from 'react-router-dom'
 import logo from "../../assets/logo.png";
 import vector from "../../assets/vector.png";
 import CoursesCovered from "../../components/ProfilePage/CoursesCovered";
@@ -7,6 +7,7 @@ import SubscriptionCard from "../../components/ProfilePage/SubscriptionCard";
 import { EDITPROFILE } from '../../Utility/Routers/Router';
 
 const Profile = () => {
+  const userInfo = useOutletContext()
   return (
     <div className="flex flex-col items-center justify-center  max-w-md mx-auto mb-28">
         {/* Header */}
@@ -26,9 +27,9 @@ const Profile = () => {
         </div>
         {/* User Email & Name */}
         <div className="text-center mb-8 ">
-          <h1 className="font-bold text-xl">Jamil Amasa</h1>
+          <h1 className="font-bold text-xl">{`${userInfo?.lastName || ""} ${userInfo?.firstName || ""}`}</h1>
           <p className="font-normal text-base text-[#7c7c7c]">
-            Jamilamasa@gmail.com
+            {userInfo?.email || ''}
           </p>
         </div>
 

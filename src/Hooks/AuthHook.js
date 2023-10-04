@@ -6,7 +6,10 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import isUsernameExist from "../Utility/isUserNameExist";
 import { useNavigate } from "react-router-dom";
 import { ROOT, SIGNIN, WELCOME } from "../Utility/Routers/Router";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 // Get USER
 export const useUser = () => {
@@ -49,23 +52,26 @@ export const useRegister = () => {
     } else {
       try {
         const res = await createUserWithEmailAndPassword(auth, email, password);
-        const docReference = doc(db, "users", res.user.uid);
-        await setDoc(docReference, {
-          id: res.user.uid,
-          username: username.toLowerCase(),
-          avatar: "",
-          date: Date.now(),
-          firstName: "",
-          lastName: "",
-          gender: "",
-          userType: "Student",
-          email: "",
-          dob: "",
-        });
+        console.log(res)
+        if (res) {
+          const docReference = doc(db, "users", res.user.uid);
+          await setDoc(docReference, {
+            id: res.user.uid,
+            userName: username.toLowerCase(),
+            avatar: "",
+            date: Date.now(),
+            firstName: "",
+            lastName: "",
+            gender: "",
+            userType: "Student",
+            email: res.user.email,
+            dob: "",
+          });
 
-        toast.success("Account created");
+          toast.success("Account created");
 
-        navigate(redirectTo);
+          navigate(redirectTo);
+        }
       } catch (error) {
         toast.error(error.message);
       } finally {
@@ -88,7 +94,7 @@ export const useLogin = () => {
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
       if (res) {
-        setLoading(false)
+        setLoading(false);
         toast.success("Login Successful");
         navigate(redirectTo);
       }

@@ -26,7 +26,6 @@ const Dashboard = () => {
     setCourse(thisCourse);
     navigate(`/course/${thisCourse}`);
   };
-  console.log(course);
 
   return (
     <>

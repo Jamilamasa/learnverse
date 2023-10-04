@@ -1,12 +1,14 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useOutletContext } from "react-router-dom";
 import ProfileHeader from "./ProfileHeader";
 
 const ProfilePage = () => {
+  const userInfo = useOutletContext().userInfo
+  
   return (
     <>
       <ProfileHeader />
-      <Outlet />
+      <Outlet context={userInfo}/>
     </>
   );
 };
