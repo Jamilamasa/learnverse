@@ -1,11 +1,26 @@
-import React from "react";
-import Button from "../../components/UI/Button"
+import React, { useState } from "react";
+import Button from "../../components/UI/Button";
 import logo from "../../assets/logo.png";
 import vector from "../../assets/vector.png";
 import { useOutletContext } from "react-router-dom";
+import { useUpdateUser } from "../../Hooks/AuthHook";
 
 const EditProfile = () => {
-  const userInfo = useOutletContext()
+  const userInfo = useOutletContext();
+  const [updateUser, isLoading] = useUpdateUser(userInfo?.id);
+  const [updatedInfo, setUpdatedInfo] = useState({
+    dob: "",
+    firstName: "",
+    gender: "",
+    lastName: "",
+    userName: userInfo?.userName,
+  });
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    updateUser(updatedInfo);
+  };
+
   return (
     <div className="flex flex-col items-center justify-center  max-w-md mx-auto mb-28">
       {/* Header */}
@@ -25,14 +40,16 @@ const EditProfile = () => {
       </div>
       {/* User Email & Name */}
       <div className="text-center mb-8 ">
-          <h1 className="font-bold text-xl">{`${userInfo?.lastName || ""} ${userInfo?.firstName || ""}`}</h1>
-          <p className="font-normal text-base text-[#7c7c7c]">
-            {userInfo?.email || ''}
-          </p>
-        </div>
+        <h1 className="font-bold text-xl">{`${userInfo?.lastName || ""} ${
+          userInfo?.firstName || ""
+        }`}</h1>
+        <p className="font-normal text-base text-[#7c7c7c]">
+          {userInfo?.email || ""}
+        </p>
+      </div>
 
       {/* Form */}
-      <form className="w-full p-5">
+      <form className="w-full p-5" onSubmit={submitHandler}>
         {/* User name */}
         <div className="relative mb-7">
           <input
@@ -41,9 +58,14 @@ const EditProfile = () => {
             className=" w-full border-2 py-4 px-5 rounded-full block pb-2.5 pt-4 text-sm text-gray-900 bg-transparent rborder-1 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
             defaultValue={userInfo?.userName}
+            onChange={(e) => {
+              setUpdatedInfo((prevState) => {
+                return { ...prevState, userName: e.target.value };
+              });
+            }}
           />
           <label
-            for="username"
+            htmlFor="username"
             className="bg-white text-[#343434B2] absolute text-lg duration-300 transform -translate-y-5 scale-75 top-3 z-10 origin-[0] mx-3 peer-focus:mx-3  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-0 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
           >
             User Name
@@ -56,9 +78,15 @@ const EditProfile = () => {
             id="first-name"
             className=" w-full border-2 py-4 px-5 rounded-full block pb-2.5 pt-4 text-sm text-gray-900 bg-transparent rborder-1 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
+            value={updatedInfo.firstName}
+            onChange={(e) => {
+              setUpdatedInfo((prevState) => {
+                return { ...prevState, firstName: e.target.value };
+              });
+            }}
           />
           <label
-            for="first-name"
+            htmlFor="first-name"
             className="bg-white text-[#343434B2] absolute text-lg duration-300 transform -translate-y-5 scale-75 top-3 z-10 origin-[0] mx-3 peer-focus:mx-3  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-0 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
           >
             First Name
@@ -71,9 +99,15 @@ const EditProfile = () => {
             id="last-name"
             className=" w-full border-2 py-4 px-5 rounded-full block pb-2.5 pt-4 text-sm text-gray-900 bg-transparent rborder-1 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
+            value={updatedInfo.lastName}
+            onChange={(e) => {
+              setUpdatedInfo((prevState) => {
+                return { ...prevState, lastName: e.target.value };
+              });
+            }}
           />
           <label
-            for="last-name"
+            htmlFor="last-name"
             className="bg-white text-[#343434B2] absolute text-lg duration-300 transform -translate-y-5 scale-75 top-3 z-10 origin-[0] mx-3 peer-focus:mx-3  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-0 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
           >
             Last Name
@@ -81,19 +115,26 @@ const EditProfile = () => {
         </div>
         {/* Gender */}
         <div className="relative mb-7">
-          {/* <input
-            type="text"
-            id="Gender"
-            className=" w-full border-2 py-4 px-5 rounded-full block pb-2.5 pt-4 text-sm text-gray-900 bg-transparent rborder-1 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            placeholder=" "
-          /> */}
           <label
-            for="gender"
+            htmlFor="gender"
             className="bg-white text-[#343434B2] absolute text-lg duration-300 transform -translate-y-5 scale-75 top-3 z-10 origin-[0] mx-3 peer-focus:mx-3  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-0 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
           >
             Gender
           </label>
-          <select id="gender" className="w-full border-2 py-4 px-5 rounded-full block pb-2.5 pt-4 text-sm text-gray-900 bg-transparent rborder-1 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" defaultValue=""><option value="">--Select A Gender--</option><option value="male">Male</option><option value="female">Female</option></select>
+          <select
+            id="gender"
+            className="w-full border-2 py-4 px-5 rounded-full block pb-2.5 pt-4 text-sm text-gray-900 bg-transparent rborder-1 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            defaultValue=""
+            onChange={(e) => {
+              setUpdatedInfo((prevState) => {
+                return { ...prevState, gender: e.target.value };
+              });
+            }}
+          >
+            <option value="">--Select A Gender--</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
         </div>
         {/* User Type */}
         <div className="relative mb-7">
@@ -106,7 +147,7 @@ const EditProfile = () => {
             value="Student"
           />
           <label
-            for="user-type"
+            htmlFor="user-type"
             className="bg-white text-[#343434B2] absolute text-lg duration-300 transform -translate-y-5 scale-75 top-3 z-10 origin-[0] mx-3 peer-focus:mx-3  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-0 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
           >
             User Type
@@ -120,30 +161,37 @@ const EditProfile = () => {
             className=" w-full border-2 py-4 px-5 rounded-full block pb-2.5 pt-4 text-sm text-gray-900 bg-transparent rborder-1 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
             defaultValue={userInfo?.email}
+            disabled
           />
           <label
-            for="email"
+            htmlFor="email"
             className="bg-white text-[#343434B2] absolute text-lg duration-300 transform -translate-y-5 scale-75 top-3 z-10 origin-[0] mx-3 peer-focus:mx-3  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-0 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
           >
             Email
           </label>
         </div>
-        {/* User name */}
+        {/* Date Of Birth */}
         <div className="relative mb-7">
           <input
             type="date"
             id="dob"
             className=" w-full border-2 py-4 px-5 rounded-full block pb-2.5 pt-4 text-sm text-gray-900 bg-transparent rborder-1 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
+            value={updatedInfo.dob}
+            onChange={(e) => {
+              setUpdatedInfo((prevState) => {
+                return { ...prevState, dob: e.target.value };
+              });
+            }}
           />
           <label
-            for="dob"
+            htmlFor="dob"
             className="bg-white text-[#343434B2] absolute text-lg duration-300 transform -translate-y-5 scale-75 top-3 z-10 origin-[0] mx-3 peer-focus:mx-3  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-0 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
           >
             Date Of Birth
           </label>
         </div>
-        <Button type="Save"/>
+        <Button type="Save" />
       </form>
     </div>
   );

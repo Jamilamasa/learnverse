@@ -16,12 +16,16 @@ const Welcome = () => {
         <h1 className="text-center text-6xl font-bold m-6">LearnVerse</h1>
         {/* Buttons */}
         <div className="flex justify-between items-center m-10">
-          <div className="flex lg:w-10 md:w-96 justify-center rounded-full bg-gradient-to-r from-[#8498CB] via-[#8E89A4] to-[#9E7167]  px-3 py-3 text-sm font-semibold leading-6 text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer">
-            <Link to={SIGNIN}>Sign In</Link>
-          </div>
-          <div className="flex lg:w-10 md:w-96 justify-center rounded-full bg-gradient-to-r from-[#8498CB] via-[#8E89A4] to-[#9E7167]  px-3 py-3 text-sm font-semibold leading-6 text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer">
-            <Link to={SIGNUP}>Sign Up</Link>
-          </div>
+          <Link to={SIGNIN}>
+            <div className="flex md:w-80 justify-center rounded-full bg-gradient-to-r from-[#8498CB] via-[#8E89A4] to-[#9E7167]  px-3 py-3 text-sm font-semibold leading-6 text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer">
+              Sign In
+            </div>
+          </Link>
+          <Link to={SIGNUP}>
+            <div className="flex md:w-80 justify-center rounded-full bg-gradient-to-r from-[#8498CB] via-[#8E89A4] to-[#9E7167]  px-3 py-3 text-sm font-semibold leading-6 text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer">
+              Sign Up
+            </div>
+          </Link>
         </div>
       </div>
     </div>
