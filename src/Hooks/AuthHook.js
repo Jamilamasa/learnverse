@@ -52,7 +52,7 @@ export const useRegister = () => {
     } else {
       try {
         const res = await createUserWithEmailAndPassword(auth, email, password);
-        console.log(res);
+        
         if (res) {
           const docReference = doc(db, "users", res.user.uid);
           await setDoc(docReference, {
