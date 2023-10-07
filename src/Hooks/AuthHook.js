@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import { auth, db } from "../Utility/FirebaseConfig";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import isUsernameExist from "../Utility/isUserNameExist";
 import { useNavigate } from "react-router-dom";
-import { ROOT, SIGNIN } from "../Utility/Routers/Router";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { PROFILE, ROOT, SIGNIN, WELCOME } from "../Utility/Routers/Router";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 // Get USER
 export const useUser = () => {
@@ -33,7 +36,7 @@ export const useUser = () => {
   return [userInfo, isLoading];
 };
 
-// Register hook
+// Register User
 export const useRegister = () => {
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -49,23 +52,26 @@ export const useRegister = () => {
     } else {
       try {
         const res = await createUserWithEmailAndPassword(auth, email, password);
-        const docReference = doc(db, "users", res.user.uid);
-        await setDoc(docReference, {
-          id: res.user.uid,
-          username: username.toLowerCase(),
-          avatar: "",
-          date: Date.now(),
-          firstName: "",
-          lastName: "",
-          gender: "",
-          userType: "Student",
-          email: "",
-          dob: "",
-        });
+        
+        if (res) {
+          const docReference = doc(db, "users", res.user.uid);
+          await setDoc(docReference, {
+            id: res.user.uid,
+            userName: username.toLowerCase(),
+            avatar: "",
+            date: Date.now(),
+            firstName: "",
+            lastName: "",
+            gender: "",
+            userType: "Student",
+            email: res.user.email,
+            dob: "",
+          });
 
-        toast.success("Account created");
+          toast.success("Account created");
 
-        navigate(redirectTo);
+          navigate(redirectTo);
+        }
       } catch (error) {
         toast.error(error.message);
       } finally {
@@ -88,7 +94,7 @@ export const useLogin = () => {
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
       if (res) {
-        setLoading(false)
+        setLoading(false);
         toast.success("Login Successful");
         navigate(redirectTo);
       }
@@ -108,8 +114,34 @@ export const useLogout = () => {
   const logout = async () => {
     if (await signOut()) {
       toast.success("Successfully logged out");
-      navigate(SIGNIN);
+      navigate(WELCOME);
     }
   };
   return [logout, loading];
+};
+
+// Edit User
+export const useUpdateUser = (uid) => {
+  const [isLoading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const updateUser = async (updatedInfo) => {
+    setLoading(true);
+    const docReference = doc(db, "users", uid);
+
+    try {
+      const res = await updateDoc(docReference, updatedInfo);
+   
+        console.log(res);
+        toast.success("Profile Updated Successfully");
+        navigate(PROFILE);
+        setLoading(false);
+      
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
+  return [updateUser, isLoading];
 };

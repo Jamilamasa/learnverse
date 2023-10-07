@@ -9,8 +9,9 @@ const ProtectedComponent = ({ children }) => {
 
   if (!userInfo && !isLoading) {
     return <Navigate to={WELCOME} />;
+  } else if (userInfo && !isLoading){
+    return <>{children}</>;
   }
-  return <>{children}</>;
 };
 
 export default ProtectedComponent;
