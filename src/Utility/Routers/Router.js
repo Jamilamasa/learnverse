@@ -9,6 +9,8 @@ import ProtectedComponent from "../ProtectedComponent";
 import { AppProvider } from "../../Context/AppContext";
 import Course from "../../Pages/Course";
 import EachCourseTopic from "../../Pages/EachCourseTopic";
+import Quiz from "../../Pages/Quiz/Quiz";
+import Instructions  from "../../Pages/Quiz/Instructions";
 
 // Export Route paths
 export const ROOT = "/";
@@ -19,6 +21,8 @@ export const WELCOME = "/welcome";
 
 export const COURSE = "/course/:id";
 export const EACHCOURSE = "/course/:id/:id";
+export const QUIZ = "/quiz"
+export const INSTRUCTIONS = "/instructions"
 
 
 
@@ -68,6 +72,16 @@ const router = createBrowserRouter([
         element: <Course />,
       },
     ]},
+    {
+      path: QUIZ,
+      element: <Quiz />,
+      errorElement: <h1>An Error Has Occured</h1>,
+    },
+    {
+      path: INSTRUCTIONS,
+      element: <Instructions />,
+      errorElement: <h1>An Error Has Occured</h1>,
+    },
 
   {
     path: EACHCOURSE,
@@ -83,6 +97,7 @@ const router = createBrowserRouter([
         element: <EachCourseTopic />,
       },
     ]},
+    
 ]);
 const Router = () => {
   return(

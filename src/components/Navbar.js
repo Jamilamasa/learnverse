@@ -3,10 +3,12 @@ import { RiBook3Line, RiCalendar2Line, RiHome2Line, RiHome6Line, RiHome8Line, Ri
 import { Link } from 'react-router-dom'
 import logo from '../assets/logo.png'
 import { AiOutlineUser } from 'react-icons/ai'
+import { useUser } from '../Hooks/AuthHook'
 
 
 const Navbar = () => {
- 
+  const [userInfo, isLoading] = useUser();
+
    
   return (<>
     <nav className=' hidden z-[100]  lg:flex justify-between w-full  items-center gap-8 text-white   bg-[#37494E] py-3 px-[10em]'>
@@ -23,7 +25,11 @@ const Navbar = () => {
                  <div>
                  <div className='  flex  justify-end  relative '>
               <span className=' bg-[#32d532] rounded-full w-3 h-3  absolute top-[-3px]'></span>
-              <img src={logo} className=' w-11 h-11' alt="" />
+              <div className=' flex justify-center items-center gap-5'>
+                <img src={logo} className=' w-11 h-11' alt="" />
+              <h1 className=' text-[1.2em]  font-[300] '>Hi! {userInfo?.username}</h1>
+              </div>
+              
             </div>
 
                  </div>

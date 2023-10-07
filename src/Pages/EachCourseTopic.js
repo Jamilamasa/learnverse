@@ -51,8 +51,9 @@ const EachCourseTopic = () => {
         1 PDF
         </div>
         <div className=' flex gap-3 items-center justify-center'>
+            <Link className=' flex gap-3 items-center justify-center' to={'/quiz'}>
             <RiQuestionMark size={ 20}  className=' text-purple-500'/>
-            Quiz
+            Quiz</Link>
         </div>
     </div>
 
