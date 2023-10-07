@@ -17,8 +17,6 @@ import {auth} from "../Utility/FirebaseConfig"
 import { useUser } from '../Hooks/AuthHook'
 import chatBot from '../assets/chat.png'
 import Chatbot from '../components/chatbot/Chatbot';
-import { auth } from "../Utility/FirebaseConfig";
-import { useUser } from "../Hooks/AuthHook";
 import { PROFILE } from "../Utility/Routers/Router";
 
 

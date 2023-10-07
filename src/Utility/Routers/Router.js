@@ -10,12 +10,11 @@ import { AppProvider } from "../../Context/AppContext";
 import Course from "../../Pages/Course";
 import EachCourseTopic from "../../Pages/EachCourseTopic";
 import Quiz from "../../Pages/Quiz/Quiz";
-import Instructions  from "../../Pages/Quiz/Instructions";
+import Instructions from "../../Pages/Quiz/Instructions";
 import Profile from "../../Pages/Profile/Profile";
 import NavigateAwayFromAuth from "../NavigateAwayFromAuth";
 import EditProfile from "../../Pages/Profile/EditProfile";
 import ProfilePage from "../../Pages/Profile/ProfilePage";
-
 
 // Export Route paths
 export const ROOT = "/";
@@ -26,13 +25,11 @@ export const WELCOME = "/welcome";
 export const COURSE = "/course/:id";
 export const EACHCOURSE = "/course/:id/:id";
 
-export const QUIZ = "/quiz"
-export const INSTRUCTIONS = "/instructions"
-
+export const QUIZ = "/quiz";
+export const INSTRUCTIONS = "/instructions";
 
 export const PROFILE = "/profile";
 export const EDITPROFILE = "/profile/edit";
-
 
 // Configure routes below
 const router = createBrowserRouter([
@@ -99,22 +96,18 @@ const router = createBrowserRouter([
         index: true,
         element: <Course />,
       },
-
-    ]},
-    {
-      path: QUIZ,
-      element: <Quiz />,
-      errorElement: <h1>An Error Has Occured</h1>,
-    },
-    {
-      path: INSTRUCTIONS,
-      element: <Instructions />,
-      errorElement: <h1>An Error Has Occured</h1>,
-    },
-
     ],
   },
-
+  {
+    path: QUIZ,
+    element: <Quiz />,
+    errorElement: <h1>An Error Has Occured</h1>,
+  },
+  {
+    path: INSTRUCTIONS,
+    element: <Instructions />,
+    errorElement: <h1>An Error Has Occured</h1>,
+  },
 
   {
     path: EACHCOURSE,
@@ -129,10 +122,8 @@ const router = createBrowserRouter([
         index: true,
         element: <EachCourseTopic />,
       },
-
     ],
   },
-
 ]);
 const Router = () => {
   return (
