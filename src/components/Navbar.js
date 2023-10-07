@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { AiOutlineUser } from "react-icons/ai";
 import { PROFILE, ROOT } from "../Utility/Routers/Router";
+import { useUser } from '../Hooks/AuthHook'
+
+
 
 const Navbar = () => {
   return (
@@ -43,6 +46,7 @@ const Navbar = () => {
             <div className=" flex justify-center items-center flex-col gap-1">
               <RiBook3Line className="  text-[#9E7167] " size={30} />
               <h1>Library</h1>
+
             </div>
 
             <div className=" flex justify-center items-center flex-col gap-1">

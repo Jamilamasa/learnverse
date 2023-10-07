@@ -1,3 +1,4 @@
+
 import React, { useContext, useState } from "react";
 import { RiEqualizerLine, RiSearch2Line } from "react-icons/ri";
 import logo from "../assets/logo.png";
@@ -12,12 +13,18 @@ import Man from "../assets/man.png";
 import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../Context/AppContext";
 import { signOut } from "firebase/auth";
+import {auth} from "../Utility/FirebaseConfig"
+import { useUser } from '../Hooks/AuthHook'
+import chatBot from '../assets/chat.png'
+import Chatbot from '../components/chatbot/Chatbot';
 import { auth } from "../Utility/FirebaseConfig";
 import { useUser } from "../Hooks/AuthHook";
 import { PROFILE } from "../Utility/Routers/Router";
 
+
 const Dashboard = () => {
   const [userInfo, isLoading] = useUser();
+
 
 
   const { course, setCourse } = useContext(AppContext);
@@ -26,6 +33,7 @@ const Dashboard = () => {
     setCourse(thisCourse);
     navigate(`/course/${thisCourse}`);
   };
+
 
   return (
     <>
@@ -55,7 +63,11 @@ const Dashboard = () => {
 
         <section className=" flex text-white mt-3  px-[10em] justify-center w-full  bg-[#2FDF36] ">
           <div>
-            <img src={Man} className="  h-[30em]" alt="" />
+
+             <img src={Man} className='  h-[30em]' alt="" />
+             
+
+       
           </div>
           <div className="  font-bold text-center flex flex-col">
             <h1 className=" piedra text-[100px]">Interactive</h1>
@@ -340,7 +352,20 @@ const Dashboard = () => {
               </button>
             </div>
           </div>
-        </section>
+
+      </section>
+
+    
+
+
+{/* CHAT BOT */}
+        
+        
+        <Chatbot/>
+      
+        
+        
+
       </div>
     </>
   );
